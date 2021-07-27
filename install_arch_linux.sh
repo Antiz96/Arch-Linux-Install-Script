@@ -46,16 +46,16 @@ arch-chroot /mnt bash -c 'useradd -m rcandau && echo "rcandau:4321" | chpasswd &
 arch-chroot /mnt bash -c 'pacman -S --noconfirm sudo > /dev/null && sed -i "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers' && echo "sudo installed and configured"
 
 #Install and configure GRUB
-echo "installing and configuring GRUB. This might take a few minutes..." && arch-chroot /mnt bash -c 'pacman -S --noconfirm grub efibootmgr dosfstools mtools > /dev/null && mkdir /boot/EFI && mount /dev/sda1 /boot/EFI && grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck && grub-mkconfig -o /boot/grub/grub.cfg' && echo "GRUB installed and configured"
+echo "installing and configuring GRUB. This might take a few minutes..." && arch-chroot /mnt bash -c 'pacman -S --noconfirm grub efibootmgr dosfstools mtools > /dev/null && mkdir /boot/EFI && mount /dev/sda1 /boot/EFI && grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck && grub-mkconfig -o /boot/grub/grub.cfg > /dev/null' && echo "GRUB installed and configured"
 
 #Install necessary/useful packages for the base of the system + Desktop environment
-echo "Installing necessary and additional packages, drivers and DE. This might take a few minutes..." && arch-chroot /mnt bash -c 'pacman -S --noconfirm --needed networkmanager vim base-devel linux-headers intel-ucode nvidia xorg gnome > /dev/null && systemctl enable NetworkManager > /dev/null && systemctl enable gdm > /dev/null' && echo ""
+echo "Installing necessary and additional packages, drivers and DE. This might take a few minutes..." && arch-chroot /mnt bash -c 'pacman -S --noconfirm --needed networkmanager vim base-devel linux-headers intel-ucode nvidia xorg gnome > /dev/null 2>&1 && systemctl enable NetworkManager > /dev/null 2>&1 && systemctl enable gdm > /dev/null 2>&1' && echo ""
 
 #Setup keyboard layout in X11
 arch-chroot /mnt bash -c 'localectl --no-convert set-x11-keymap fr' && echo "Keyboard layout configured"
 
 #Update Grub configuration
-arch-chroot /mnt bash -c 'grub-mkconfig -o /boot/grub/grub.cfg > /dev/null 2>&1' && echo "Grub configuration updated"
+arch-chroot /mnt bash -c 'grub-mkconfig -o /boot/grub/grub.cfg > /dev/null' && echo "Grub configuration updated"
 
 #Exit chroot and umount root partition
 arch-chroot /mnt bash -c 'exit' && umount -l /mnt && echo "Umount root partition OK"
