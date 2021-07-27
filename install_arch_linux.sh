@@ -68,5 +68,4 @@ echo ""
 echo ""
 echo ""
 echo "The computer will reboot automatically in a few second"
-echo "Don't forget to unplug your USB key or ISO support"
 sleep 10 && reboot
