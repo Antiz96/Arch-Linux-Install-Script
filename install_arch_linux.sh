@@ -49,7 +49,7 @@ arch-chroot /mnt bash -c 'pacman -S --noconfirm sudo > /dev/null && sed -i "s/# 
 echo "installing and configuring GRUB. This might take a few minutes..." && arch-chroot /mnt bash -c 'pacman -S --noconfirm grub efibootmgr dosfstools mtools > /dev/null && mkdir /boot/EFI && mount /dev/sda1 /boot/EFI && grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck && grub-mkconfig -o /boot/grub/grub.cfg > /dev/null' && echo "GRUB installed and configured"
 
 #Install necessary/useful packages for the base of the system + Desktop environment
-echo "Installing necessary and additional packages, drivers and DE. This might take a few minutes..." && arch-chroot /mnt bash -c 'pacman -S --noconfirm --needed networkmanager vim base-devel linux-headers intel-ucode nvidia xorg gnome > /dev/null 2>&1 && systemctl enable NetworkManager > /dev/null 2>&1 && systemctl enable gdm > /dev/null 2>&1' && echo ""
+echo "Installing necessary and additional packages, drivers and DE. This might take a few minutes..." && arch-chroot /mnt bash -c 'pacman -S --noconfirm --needed networkmanager vim base-devel linux-headers intel-ucode nvidia xorg gnome > /dev/null 2>&1 && systemctl enable NetworkManager > /dev/null 2>&1 && systemctl enable gdm > /dev/null 2>&1' && echo "Packages installed"
 
 #Setup keyboard layout in X11
 arch-chroot /mnt bash -c 'localectl --no-convert set-x11-keymap fr' && echo "Keyboard layout configured"
