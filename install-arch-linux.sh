@@ -118,5 +118,5 @@ echo "Installation complete"
 echo ""
 echo "Welcome to Arch-Linux :)"
 echo ""
-echo "The computer will reboot automatically in a few second"
+echo "The computer will reboot in a few second"
 sleep 10 && reboot
