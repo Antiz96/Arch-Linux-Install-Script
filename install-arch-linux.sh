@@ -81,7 +81,7 @@ timedatectl set-ntp true && echo "NTP configured" || exit 1
 mount $ROOT_PART /mnt && echo "Root partition \"$ROOT_PART\" correctly mounted" || exit 1
 
 #Install Linux Kernel and base system
-echo "Installating $KERNEL kernel and base system. This might take a few minutes..." && pacstrap /mnt base $KERNEL linux-firmware > /dev/null && echo "Linux Kernel and base system installed" || exit 1
+echo "Installating \"$KERNEL\" kernel and base system. This might take a few minutes..." && pacstrap /mnt base $KERNEL linux-firmware > /dev/null && echo "Linux Kernel and base system installed" || exit 1
 
 #Generating FSTAB
 genfstab -U /mnt >> /mnt/etc/fstab && echo "FSTAB generated" || exit 1
