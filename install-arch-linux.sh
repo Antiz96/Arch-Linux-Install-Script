@@ -8,7 +8,7 @@ echo "An internet connexion is needed to use this script (which is required to i
 echo ""
 echo "/!\ WARNING /!\\"
 echo "Disk partitioning is NOT currently handled by this script"
-echo "It may be in the future, if I find a good implementation for that feature"
+echo "It may be handled in the future, if I find a good implementation for that feature"
 echo "Please, create your own partitions AND filesystems BEFORE using this script (refer to the guide linked down below)"
 echo "Also, keep in mind that this script is meant to install Arch-Linux on a UEFI/EFI system"
 echo ""
