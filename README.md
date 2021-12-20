@@ -23,7 +23,7 @@ Also, keep in mind that this script is meant to install Arch-Linux on a **UEFI/E
 
 Type the following command in your terminal :
 
-`curl https://raw.githubusercontent.com/Antiz96/Arch-Linux-Install-Script/main/install-arch-linux.sh -o install-arch-linux.sh && chmod +x install-arch-linux.sh`
+`curl https://raw.githubusercontent.com/Antiz96/Arch-Linux-Install-Script/main/install-arch-linux.sh -O && chmod +x install-arch-linux.sh`
 
 
 ## Configuration
