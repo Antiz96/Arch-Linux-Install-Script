@@ -249,7 +249,7 @@ Don't forget to edit the "ROOT_PART" and "BOOT_PART" variables in the script acc
 
 ## Technologies and prerequisites
 
-This script has been entirely written with bash (Version 5.1.8).
+This script has been entirely written with bash.
 
 An internet connexion is needed to use this script (which is required to install Arch Linux anyway).  
 The disk partitionning part is not currently handled by this script, so you need to do your disk partitioning and filesystems yourself before using it.
