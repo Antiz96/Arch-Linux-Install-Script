@@ -1,6 +1,6 @@
 # Arch Linux Install Script
 
-A bash script I made to automate my VMs Arch Linux installations.  
+A bash script I made to automate my Arch Linux VMs installations.  
 It is easy to adapt to your needs/preferences (guide down below).
 
 An internet connexion is needed to use this script (which is required to install Arch Linux anyway).
