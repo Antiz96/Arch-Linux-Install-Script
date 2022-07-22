@@ -1,5 +1,7 @@
 # Arch Linux Install Script
 
+[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Antiz96)](https://github.com/anuraghazra/github-readme-stats)
+
 A bash script I made to automate my Arch Linux VMs installations.  
 It is easy to adapt to your needs/preferences (guide down below).
 
