@@ -1,5 +1,14 @@
 # Arch Linux Install Script
 
+---
+
+## Deprecated and unmaintained project
+  
+This script is deprecated and unmaintained.  
+If you're looking for a guided/automated Arch Linux installer, use the official [archinstall](https://gitlab.archlinux.org/archlinux/archinstall) project.  
+  
+---
+  
 A bash script I made to automate my Arch Linux VMs installations.  
 It is easy to adapt to your needs/preferences (guide down below).
 
@@ -58,63 +67,9 @@ Once you edited the variables according to your needs/preferences, you can launc
 
 `./install-arch-linux.sh`
 
-Once the script has launched, you just need to press "enter" after you read the displayed information. The script will take care of the rest.
-
+Once the script has launched, you just need to press "enter" after you read the displayed information. The script will take care of the rest.  
+  
 **If you haven't configured the script or did the disk partitioning/filesystem part yet, you can press "ctrl + c" to quit the script and do so before relaunching it**.
-
-If everything went well, you should have the following output (emphasized part) :
-
-
-*Welcome to the Arch Linux Installer Script made by Robin Candau*
-
-*Don't forget to adapt it to your needs and preferences before using it (refer to the guide linked down below) !*
-
-*An internet connexion is needed to use this script (which is required to install Arch Linux anyway)*
-
-*/!\ WARNING /!\\  
-Disk partitioning is NOT currently handled by this script  
-It may be handled in the future, if I find a good implementation for that feature  
-For now, you'll need to create your own partitions AND filesystems BEFORE using this script (refer to the guide linked down below)  
-Also, keep in mind that this script is meant to install Arch-Linux on a UEFI/EFI system*
-
-*A complete and easy guide to edit and use this script is available on the following link :  
-https://github.com/Antiz96/Arch-Linux-Install-Script*
-
-*My Github : https://github.com/Antiz96  
-My Linkedin : https://www.linkedin.com/in/robin-candau-3083a2173/  
-My Website : https://rc-linux.com*
-
-*Press "enter" to continue or "ctrl + c" to abort*
-
-
-*NTP configured   
-Root partition "/dev/sda3" correctly mounted* --> The root partition may differ depending on what you configured  
-*Installing "linux" kernel and base system. This might take a few minutes...* --> The kernel may differ depending on what you configured  
-*Linux kernel and base system installed  
-FSTAB generated  
-Timezone "Europe/Paris" configured* --> The timezone may differ depending on what you configured  
-*Language "fr_FR.UTF-8" configured* --> The language may differ depending on what you configured  
-*Hostname "Arch-Linux" configured* --> The hostname may differ depending on what you configured  
-*Root password configured  
-User "user1" created and configured* --> The username may differ depending on what you configured  
-*Sudo installed and configured  
-Installing and configuring GRUB. This might take a few minutes...  
-GRUB installed and configured on boot partition "/dev/sda1"* --> The boot partition may differ depending on what you configured  
-*Installing necessary and additional packages, drivers and desktop environment. This might take a few minutes...  
-Packages installed  
-Keyboard layout "fr" configured* --> The keyboard layout may differ depending on what you configured  
-*GRUB configuration updated  
-Root partition "/dev/sda3" correctly unmounted* --> The root partition may differ depending on what you configured  
-
-*Installation complete*
-
-*Welcome to Arch-Linux :)*
-
-*The computer will reboot in a few seconds*
-
-If you get a different output and/or if the script stops prematurely, then something went wrong.  
-In this case, verify that you have a working internet connexion, that you did your disk partitioning and filesystems correctly and that you correctly configured the script by editing the variables.
-
 
 ## Disk partitioning example
 
