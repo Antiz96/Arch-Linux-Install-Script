@@ -4,7 +4,7 @@ echo "Welcome to the Arch Linux Installer Script made by Robin Candau"
 echo ""
 echo "Don't forget to adapt it to your needs and preferences before using it (refer to the guide linked down below) !"
 echo ""
-echo "An internet connexion is needed to use this script (which is required to install Arch Linux anyway)"
+echo "An internet connection is needed to use this script (which is required to install Arch Linux anyway)"
 echo ""
 echo "/!\ WARNING /!\\"
 echo "Disk partitioning is NOT currently handled by this script"
@@ -64,7 +64,7 @@ CPU="intel-ucode"
 #Defines the GPU driver to install. You can choose between "nvidia" (for Nvidia GPU and Linux kernel), "nvidia-lts" (for Nvidia GPU and Linux-lts kernel) or "mesa" (for AMD GPU or Intel graphics).
 GPU="nvidia"
 
-#Defines the additionnal packages to install (such as useful packages for the system, Desktop environment, display manager, etc... Don't forget to modify the "systemctl enable" part depending on your choices.
+#Defines the additional packages to install (such as useful packages for the system, Desktop environment, display manager, etc... Don't forget to modify the "systemctl enable" part depending on your choices.
 PACKAGES() {
 	pacman -S --noconfirm --needed networkmanager vim base-devel linux-headers bash-completion xorg gnome > /dev/null 2>&1 && systemctl enable NetworkManager > /dev/null 2>&1 && systemctl enable gdm > /dev/null 2>&1
 }

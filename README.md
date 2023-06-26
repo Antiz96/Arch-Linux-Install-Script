@@ -12,7 +12,7 @@ If you're looking for a guided/automated Arch Linux installer, use the official 
 A bash script I made to automate my Arch Linux VMs installations.  
 It is easy to adapt to your needs/preferences (guide down below).
 
-An internet connexion is needed to use this script (which is required to install Arch Linux anyway).
+An internet connection is needed to use this script (which is required to install Arch Linux anyway).
 
 **WARNING**  
 Disk partitioning is **NOT** currently handled by this script.  
@@ -37,7 +37,7 @@ Type the following command in your terminal :
 
 ## Configuration
 
-To configure the script according to your needs/preferences, you just have to edit it with your prefered text editor (vi, vim, nano, etc...) :
+To configure the script according to your needs/preferences, you just have to edit it with your preferred text editor (vi, vim, nano, etc...) :
 
 `vim install-arch-linux.sh`
 
@@ -58,7 +58,7 @@ USER_NAME      |  56    |  user1          | Defines the username of your user.
 USER_PWD       |  59    |  1234           | Defines the password of your user.
 CPU	       |  62    |  intel-ucode    | Defines the CPU driver to install. You can choose between "intel-ucode" (for Intel CPU) or "amd-ucode" (for AMD CPU).
 GPU            |  65    |  nvidia         | Defines the GPU driver to install. You can choose between "nvidia" (for Nvidia GPU and Linux kernel), "nvidia-lts" (for Nvidia GPU and Linux-lts kernel) or "mesa" (for AMD GPU or Intel graphics).     
-PACKAGES       |  69    |  networkmanager vim base-devel linux-headers bash-completion xorg gnome  | Defines the additionnal packages to install (such as useful packages for the system, Desktop environment, display manager, etc... Don't forget to modify the "systemctl enable" part depending on your choices. **If you don't know what to put in this variable, just leave it as default. The default value contains necessary and useful packages for the system and the Gnome Desktop environment**.
+PACKAGES       |  69    |  networkmanager vim base-devel linux-headers bash-completion xorg gnome  | Defines the additional packages to install (such as useful packages for the system, Desktop environment, display manager, etc... Don't forget to modify the "systemctl enable" part depending on your choices. **If you don't know what to put in this variable, just leave it as default. The default value contains necessary and useful packages for the system and the Gnome Desktop environment**.
 
 
 ## Usage
@@ -85,8 +85,8 @@ I usually create 3 partitions :
 Partition Number  |  Size  |  Comment
 ----------------  |  ----  |  -------
 1                 |  550M  |  Boot Partition to install the GRUB bootloader on it.
-2                 |  4G    |  Swap Partition. This partition is not mandatory, althought I recommend doing it. The size of this partition may differ depending on the size of your RAM. Check this [link](https://itsfoss.com/swap-size/ "link title") for more details.
-3                 |  All left free space |  Root Partition to install my system on it, softwares, etc...
+2                 |  4G    |  Swap Partition. This partition is not mandatory, although I recommend doing it. The size of this partition may differ depending on the size of your RAM. Check this [link](https://itsfoss.com/swap-size/ "link title") for more details.
+3                 |  All left free space |  Root Partition to install my system on it, software, etc...
 
 **Listing my disk(s) to select the one I want to install Arch Linux on :**
 
@@ -103,7 +103,7 @@ Units: sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 512 bytes  
 I/O size (minimum/optimal): 512 bytes / 512 bytes*
 
-**Partitionning my disk :**
+**Partitioning my disk :**
 
 **You can press "m" at any time in fdisk to display the help. Changes will only be applied when you'll press "w". You can press "q" at any time to discard changes.**    
 **The following steps will completely erase all data on the selected disk, so make sure you have a valid save of things you want to keep.**
@@ -206,5 +206,5 @@ Don't forget to edit the "ROOT_PART" and "BOOT_PART" variables in the script acc
 
 This script has been entirely written with bash.
 
-An internet connexion is needed to use this script (which is required to install Arch Linux anyway).  
-The disk partitionning part is not currently handled by this script, so you need to do your disk partitioning and filesystems yourself before using it.
+An internet connection is needed to use this script (which is required to install Arch Linux anyway).  
+The disk partitioning part is not currently handled by this script, so you need to do your disk partitioning and filesystems yourself before using it.
