@@ -4,7 +4,7 @@
 
 ## Deprecated and unmaintained project
   
-This project is deprecated and unmaintained.  
+**This project is deprecated and unmaintained.**  
 If you're looking for a guided/automated Arch Linux installer, use the official [archinstall](https://gitlab.archlinux.org/archlinux/archinstall) project.  
   
 ---
