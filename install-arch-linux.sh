@@ -93,10 +93,10 @@ export TIMEZONE=$TIMEZONE && arch-chroot /mnt bash -c "ln -sf /usr/share/zoneinf
 export LANGUAGE=$LANGUAGE && export KEYMAP=$KEYMAP && arch-chroot /mnt bash -c "sed -i "s/#$LANGUAGE UTF-8/$LANGUAGE UTF-8/" /etc/locale.gen && locale-gen > /dev/null && echo "LANG=$LANGUAGE" > /etc/locale.conf && echo "KEYMAP=$KEYMAP" > /etc/vconsole.conf" && echo "Language \"$LANGUAGE\" configured" || exit 1
 
 #Set Hostname
-export HOSTNAME=$HOSTNAME && arch-chroot /mnt bash -c "echo "$HOSTNAME" > /etc/hostname && echo -e '\n127.0.0.1       localhost\n::1             localhost\n127.0.1.1       $HOSTNAME.localdomain $HOSTNAME' >> /etc/hosts" && echo "Hostname \"$HOSTNAME\" configured" || exit 1
+export HOSTNAME=$HOSTNAME && arch-chroot /mnt bash -c "echo '$HOSTNAME' > /etc/hostname && echo -e '\n127.0.0.1       localhost\n::1             localhost\n127.0.1.1       $HOSTNAME.localdomain $HOSTNAME' >> /etc/hosts" && echo "Hostname \"$HOSTNAME\" configured" || exit 1
 
 #Modify root password
-export ROOT_PWD=$ROOT_PWD && arch-chroot /mnt bash -c "echo "root:"$ROOT_PWD"" | chpasswd" && echo "Root password configured" || exit 1
+export ROOT_PWD=$ROOT_PWD && arch-chroot /mnt bash -c "echo 'root:'$ROOT_PWD'' | chpasswd" && echo "Root password configured" || exit 1
 
 #Create User
 export USER_NAME=$USER_NAME && export USER_PWD=$USER_PWD && arch-chroot /mnt bash -c "useradd -m $USER_NAME && echo "$USER_NAME:$USER_PWD" | chpasswd && usermod -aG wheel,audio,video,optical,storage,games $USER_NAME" && echo "User \"$USER_NAME\" created and configured" || exit 1
@@ -111,7 +111,7 @@ echo "Installing and configuring GRUB. This might take a few minutes..." && arch
 export -f PACKAGES && echo "Installing necessary and additional packages, drivers and desktop environment. This might take a few minutes..." && arch-chroot /mnt bash -c "pacman -S --noconfirm $CPU $GPU > /dev/null 2>&1 && PACKAGES" && echo "Packages installed" || exit 1
 
 #Setup keyboard layout in X11
-arch-chroot /mnt bash -c "echo -e "Section \"InputClass\"\n        Identifier \"system-keyboard\"\n        MatchIsKeyboard \"on\"\n        Option \"XkbLayout\" \"$KEYMAP\"\nEndSection" > /etc/X11/xorg.conf.d/00-keyboard.conf" && echo "Keyboard layout \"$KEYMAP\" configured" || exit 1
+arch-chroot /mnt bash -c "echo -e 'Section \'InputClass\'\n        Identifier \'system-keyboard\'\n        MatchIsKeyboard \'on\'\n        Option \'XkbLayout\' \'$KEYMAP\'\nEndSection' > /etc/X11/xorg.conf.d/00-keyboard.conf" && echo "Keyboard layout \"$KEYMAP\" configured" || exit 1
 
 #Update Grub configuration
 arch-chroot /mnt bash -c "grub-mkconfig -o /boot/grub/grub.cfg > /dev/null 2>&1" && echo "GRUB configuration updated" || exit 1
