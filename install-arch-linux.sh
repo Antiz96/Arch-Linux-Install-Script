@@ -32,7 +32,7 @@ echo ""
 ROOT_PART="/dev/sda3"
 
 #Defines the disk partition on which the bootloader (GRUB) will be installed. You can list your current partitions with the "fdisk -l" command.
-BOOT_PART="/dev/sda1"
+export BOOT_PART="/dev/sda1"
 
 #Defines the linux kernel that will be installed on your system. You can choose between "linux" (latest linux kernel) or "linux-lts" (long term support linux kernel).
 KERNEL="linux"
@@ -59,10 +59,10 @@ USER_NAME="user1"
 USER_PWD="1234"
 
 #Defines the CPU driver to install. You can choose between "intel-ucode" (for Intel CPU) or "amd-ucode" (for AMD CPU).
-CPU="intel-ucode"
+export CPU="intel-ucode"
 
 #Defines the GPU driver to install. You can choose between "nvidia" (for Nvidia GPU and Linux kernel), "nvidia-lts" (for Nvidia GPU and Linux-lts kernel) or "mesa" (for AMD GPU or Intel graphics).
-GPU="nvidia"
+export GPU="nvidia"
 
 #Defines the additional packages to install (such as useful packages for the system, Desktop environment, display manager, etc... Don't forget to modify the "systemctl enable" part depending on your choices.
 PACKAGES() {
@@ -93,7 +93,7 @@ export TIMEZONE=$TIMEZONE && arch-chroot /mnt bash -c "ln -sf /usr/share/zoneinf
 export LANGUAGE=$LANGUAGE && export KEYMAP=$KEYMAP && arch-chroot /mnt bash -c "sed -i "s/#$LANGUAGE UTF-8/$LANGUAGE UTF-8/" /etc/locale.gen && locale-gen > /dev/null && echo "LANG=$LANGUAGE" > /etc/locale.conf && echo "KEYMAP=$KEYMAP" > /etc/vconsole.conf" && echo "Language \"$LANGUAGE\" configured" || exit 1
 
 #Set Hostname
-export HOSTNAME=$HOSTNAME && arch-chroot /mnt bash -c "echo "$HOSTNAME" > /etc/hostname && echo -e "\n127.0.0.1       localhost\n::1             localhost\n127.0.1.1       $HOSTNAME.localdomain $HOSTNAME" >> /etc/hosts" && echo "Hostname \"$HOSTNAME\" configured" || exit 1
+export HOSTNAME=$HOSTNAME && arch-chroot /mnt bash -c "echo "$HOSTNAME" > /etc/hostname && echo -e '\n127.0.0.1       localhost\n::1             localhost\n127.0.1.1       $HOSTNAME.localdomain $HOSTNAME' >> /etc/hosts" && echo "Hostname \"$HOSTNAME\" configured" || exit 1
 
 #Modify root password
 export ROOT_PWD=$ROOT_PWD && arch-chroot /mnt bash -c "echo "root:"$ROOT_PWD"" | chpasswd" && echo "Root password configured" || exit 1
@@ -102,13 +102,13 @@ export ROOT_PWD=$ROOT_PWD && arch-chroot /mnt bash -c "echo "root:"$ROOT_PWD"" |
 export USER_NAME=$USER_NAME && export USER_PWD=$USER_PWD && arch-chroot /mnt bash -c "useradd -m $USER_NAME && echo "$USER_NAME:$USER_PWD" | chpasswd && usermod -aG wheel,audio,video,optical,storage,games $USER_NAME" && echo "User \"$USER_NAME\" created and configured" || exit 1
 
 #Install and configure sudo
-arch-chroot /mnt bash -c "pacman -S --noconfirm sudo > /dev/null && sed -i "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers" && echo "Sudo installed and configured" || exit 1
+arch-chroot /mnt bash -c "pacman -S --noconfirm sudo > /dev/null && sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers" && echo "Sudo installed and configured" || exit 1
 
 #Install and configure GRUB
-export BOOT_PART=$BOOT_PART && echo "Installing and configuring GRUB. This might take a few minutes..." && arch-chroot /mnt bash -c "pacman -S --noconfirm grub efibootmgr dosfstools mtools > /dev/null && mkdir /boot/EFI && mount $BOOT_PART /boot/EFI && grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck > /dev/null 2>&1 && grub-mkconfig -o /boot/grub/grub.cfg > /dev/null 2>&1" && echo "GRUB installed and configured on boot partition \"$BOOT_PART\"" || exit 1
+echo "Installing and configuring GRUB. This might take a few minutes..." && arch-chroot /mnt bash -c "pacman -S --noconfirm grub efibootmgr dosfstools mtools > /dev/null && mkdir /boot/EFI && mount $BOOT_PART /boot/EFI && grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck > /dev/null 2>&1 && grub-mkconfig -o /boot/grub/grub.cfg > /dev/null 2>&1" && echo "GRUB installed and configured on boot partition \"$BOOT_PART\"" || exit 1
 
 #Install necessary/useful packages for the base of the system + Desktop environment (and eventually Display Manager)
-export CPU=$CPU && export GPU=$GPU && export -f PACKAGES && echo "Installing necessary and additional packages, drivers and desktop environment. This might take a few minutes..." && arch-chroot /mnt bash -c "pacman -S --noconfirm $CPU $GPU > /dev/null 2>&1 && PACKAGES" && echo "Packages installed" || exit 1
+export -f PACKAGES && echo "Installing necessary and additional packages, drivers and desktop environment. This might take a few minutes..." && arch-chroot /mnt bash -c "pacman -S --noconfirm $CPU $GPU > /dev/null 2>&1 && PACKAGES" && echo "Packages installed" || exit 1
 
 #Setup keyboard layout in X11
 arch-chroot /mnt bash -c "echo -e "Section \"InputClass\"\n        Identifier \"system-keyboard\"\n        MatchIsKeyboard \"on\"\n        Option \"XkbLayout\" \"$KEYMAP\"\nEndSection" > /etc/X11/xorg.conf.d/00-keyboard.conf" && echo "Keyboard layout \"$KEYMAP\" configured" || exit 1
