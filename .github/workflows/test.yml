@@ -1,0 +1,26 @@
+name: Test suite
+on: pull_request
+
+jobs:
+  test_suite:
+    runs-on: ubuntu-latest
+
+    container:
+      image: docker.io/library/alpine:latest
+      options: --privileged
+
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v3
+
+      - name: Update container
+        run: apk update && apk upgrade
+
+      - name: Install packages
+        run: apk add shellcheck py3-pip && pip install codespell
+
+      - name: Run codespell
+        run: codespell --enable-colors
+
+      - name: Run shellcheck
+        run: find . -name '*.sh' -exec shellcheck --color=always {} +
